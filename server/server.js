@@ -6,25 +6,19 @@ const app = express();
 const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT;
+const URLDB = process.env.URLDB;
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
+app.use(require('./routes/index'));
 
-app.use(require('./routes/usuario'));
-
-/*mongoose.connect('mongodb://localhost/cafe', {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(console.log('La BBDD está online'))
-    .catch(console.log);*/
-
-mongoose.connect(process.env.URLDB, {
+mongoose.connect(URLDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 }, (err) => {
     if (err) throw err;
     console.log('La BBDD está online.');

@@ -21,3 +21,10 @@ if (process.env.NODE_ENV === 'dev') {
 }
 
 process.env.URLDB = urlDB;
+
+// ==================================
+// ============== JWT ===============
+// ==================================
+
+process.env.CADUCIDAD_TOKEN = "30d";
+process.env.SECRET = process.env.SECRET || 'secret-rest-server-desarrollo';
